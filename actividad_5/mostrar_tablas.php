@@ -46,17 +46,7 @@ if ($result) {
         <div class="main-body">
 
             <!-- Breadcrumb -->
-            <nav aria-label="breadcrumb" class="main-breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="logout.php">Cerrar Sesión</a></li>
-                    <li class="breadcrumb-item"><a href="designorder.php">Detalles de orden</a></li>
-                    <li class="breadcrumb-item"><a href="designproduct.php">Productos con sus líneas de productos</a></li>
-                    <li class="breadcrumb-item"><a href="design_lineaconsulta.php">Ordenes con su línea de producto</a></li>
-                    <li class="breadcrumb-item"><a href="ordenes_linea.php">Ordenes con su línea</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Mostrar Tablas</li>
-                </ol>
-            </nav>
+            <?php include("nav_bar.php"); ?>
             <!-- /Breadcrumb -->
 
             <div class="container" style="text-align:center;">
@@ -86,12 +76,12 @@ if ($result) {
                         echo "<h2>Datos de la tabla {$selectedTable}</h2>";
                         echo "<hr>";
 
-                ?>
-            </div>
+                        ?>
+                    </div>
 
-            <div class="table-responsive">
+                    <div class="table-responsive">
 
-                <?php
+                        <?php
                         echo "<table class='table custom-table'>";
                         echo "<thead>";
                         echo "<tr>";
@@ -101,22 +91,22 @@ if ($result) {
                         }
                         echo "</tr>";
                         echo "</thead>";
-                ?>
+                        ?>
 
-                <tbody>
-            <?php
-                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<tr class='row100 body'>";
-                            foreach ($row as $valor) {
-                                echo "<td>{$valor}</td>";
+                        <tbody>
+                            <?php
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<tr class='row100 body'>";
+                                foreach ($row as $valor) {
+                                    echo "<td>{$valor}</td>";
+                                }
+                                echo "</tr>";
                             }
-                            echo "</tr>";
-                        }
                     } else {
                         echo "Error al consultar la tabla";
                     }
                 }
-            ?>
+                ?>
                 </tbody>
             </div>
 
