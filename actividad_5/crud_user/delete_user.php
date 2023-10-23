@@ -85,7 +85,7 @@
         if (deleteUser($id)) {
             echo '';
             // Redireccionar a otra página
-            header("Location: ../index.php");
+            header("Location: ../crud_user.php");
             exit;
         } else {
             echo '<p>Error al Eliminarl el User</p>';

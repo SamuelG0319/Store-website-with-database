@@ -102,8 +102,12 @@
 
         if (updateUser($codUser, $user, $password, $name, $lastName)) {
             echo '';
+            $_SESSION["codusuario"] = $codUser;
+            $_SESSION["usuario"] = $user;
+            $_SESSION["nombre"] = $name;
+            $_SESSION["apellido"] = $lastName;
             // Redireccionar a otra página
-            header("Location: ../index.php");
+            header("Location: ../crud_user.php");
             exit;
         } else {
             echo '<p>Error al actualizar el User</p>';

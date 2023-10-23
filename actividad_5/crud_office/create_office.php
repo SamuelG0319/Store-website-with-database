@@ -103,36 +103,6 @@
                     </div>
         </form>
     </div>
-<!--
-    <form action="" method="POST">
-        <label>Ingrese la City: </label>
-        <input type="text" required name="city" id="city" placeholder="Input City">
-        <br><br>
-        <label>Ingrese el Phone: </label>
-        <input type="text" required name="phone" id="phone" placeholder="Input Phone">
-        <br><br>
-        <label>Ingrese el AddressLine1: </label>
-        <input type="text" required name="addressLine1" id="addressLine1" placeholder="Input Address Line 1">
-        <br><br>
-        <label>Ingrese el AddressLine2: </label>
-        <input type="text" name="addressLine2" id="addressLine2" placeholder="Input Address Line 2">
-        <br><br>
-        <label>Ingrese el State: </label>
-        <input type="text" name="state" id="state" placeholder="Input State">
-        <br><br>
-        <label>Ingrese el Country: </label>
-        <input type="text" required name="country" id="country" placeholder="Input Country">
-        <br><br>
-        <label>Ingrese el Postal Code: </label>
-        <input type="text" required name="postalCode" id="postalCode" placeholder="Input Postal Code">
-        <br><br>
-        <label>Ingrese el Territory: </label>
-        <input type="text" required name="territory" id="territory" placeholder="Input Territory">
-        <br><br>
-
-        <input type="submit" value="Registrar Usuario">
-    </form>
--->
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

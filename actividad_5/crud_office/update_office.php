@@ -48,7 +48,8 @@
             <input type="text" required class="space" name="phone" id="phone" placeholder="Phone">
             <br>
             <label>Ingrese el AddressLine1: </label>
-            <input type="text" required class="space" name="addressLine1" id="addressLine1" placeholder="Address Line 1">
+            <input type="text" required class="space" name="addressLine1" id="addressLine1"
+                placeholder="Address Line 1">
             <br>
             <label>Ingrese el AddressLine2: </label>
             <input type="text" class="space" name="addressLine2" id="addressLine2" placeholder="Address Line 2">
@@ -68,7 +69,7 @@
             <input type="submit" value="Update Office">
         </form>
     </div>
-<br><br>
+    <br><br>
     <table class="table">
         <tr>
             <th>OfficeCode</th>
@@ -82,12 +83,11 @@
             <th>Territory</th>
         </tr>
         <?php
-        function getUsers()
+        function getOffice()
         {
             global $dbconn;
             $sql = "SELECT * FROM offices ";
             $result = $dbconn->query($sql);
-
             if ($result->rowCount() > 0) {
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
@@ -104,16 +104,20 @@
                 }
             }
         }
-        getUsers();
+        getOffice();
         ?>
     </table>
     <br>
 
 
-
-
     <?php
-
+    function updateOffice($codOffice, $city, $phone, $addressLine1, $addressLine2, $state, $country, $postalCode, $territory)
+    {
+        global $dbconn;
+        $sql = "UPDATE offices SET city='$city', phone='$phone', addressLine1='$addressLine1', addressLine2='$addressLine2', state='$state', country='$country', postalCode='$postalCode', territory='$territory' WHERE officeCode=$codOffice";
+        $result = $dbconn->query($sql);
+        return $result;
+    }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $codOffice = $_POST['codOffice'];
         $city = $_POST['city'];
@@ -124,24 +128,18 @@
         $country = $_POST['country'];
         $postalCode = $_POST['postalCode'];
         $territory = $_POST['territory'];
-
-        if (updateUser($codOffice, $city, $phone, $addressLine1, $addressLine2, $state, $country, $postalCode, $territory)) {
-            echo '';
-            // Redireccionar a otra página
-            header("Location: ../index.php");
-            exit;
+    
+        if (updateOffice($codOffice, $city, $phone, $addressLine1, $addressLine2, $state, $country, $postalCode, $territory)) {
+            // Redirige después de haber realizado todas las operaciones necesarias
+            header("Location: ../crud_office.php");
+            exit; // Añade exit para detener la ejecución después de la redirección
         } else {
-            echo '<p>Error al Actualizar la Office</p>';
+            $errorMessage = 'Error al Actualizar la Office';
         }
     }
-    function updateUser($codOffice, $city, $phone, $addressLine1, $addressLine2, $state, $country, $postalCode, $territory)
-    {
-        global $dbconn;
-        $sql = "UPDATE offices SET city='$city', phone='$phone', addressLine1='$addressLine1', addressLine2='$addressLine2', state='$state', country='$country', postalCode='$postalCode', territory='$territory' WHERE codusuario=$codOffice";
-        $result = $dbconn->query($sql);
-        return $result;
-    }
     ?>
+
+
 
     <script type="text/javascript">
         document.querySelector("form").addEventListener("submit", function () {
